@@ -1,3 +1,5 @@
+PImage bg;
+
 import java.util.Random;
 Random generator;
 
@@ -8,24 +10,26 @@ float zx;
 float zy;
 
 void setup() {
-  size(500, 500);
-  background(50);
+  size(1024, 1024);
   generator = new Random();
+  bg = loadImage("floor.png");
+  background(100);
 }
 
 void draw() {
 
   float numX = (float) generator.nextGaussian();
   float numY = (float) generator.nextGaussian();
+  //  float numZ = (float) generator.nextGaussian();
 
-  float sd = 60;
-  float mean = 250;
+  float sd = 120;
+  float mean = 500;
 
   z = random(0, 20);
-  zx = random(2, 5);
-  zy = random(2, 5);
+  zx = random(0, 10);
+  zy = random(0, 10);
 
   noStroke();
-  fill(255, 255, 0);
+  fill(numX*sd+350, numY*sd+350, 0, 255);
   ellipse(numX*sd+mean, numY*sd+mean, z+zx, z+zy);
 }
